@@ -11,12 +11,12 @@ The primary use case for this script is for individuals or organizations that ne
 ## Instructions
 
 1. **Setup Google Spreadsheet:**
-   - Create a new Google Spreadsheet or use an existing one.
-   - Note down the Spreadsheet ID from the URL.
+   - Create a new Google Spreadsheet or use an existing one by navigating to [Google Sheets](https://sheets.google.com).
+   - Note down the Spreadsheet ID from the URL. The URL will look something like this: `https://docs.google.com/spreadsheets/d/YOUR_SPREADSHEET_ID/edit`. The `YOUR_SPREADSHEET_ID` is the part you need to note down.
 
 2. **Setup Google Drive Folder:**
-   - Create a base folder in Google Drive where you want to save the email attachments.
-   - Note down the Folder ID from the URL.
+   - Create a base folder in Google Drive where you want to save the email attachments by navigating to [Google Drive](https://drive.google.com).
+   - Note down the Folder ID from the URL. The URL will look something like this: `https://drive.google.com/drive/folders/YOUR_FOLDER_ID`. The `YOUR_FOLDER_ID` is the part you need to note down.
 
 3. **Update Script Constants:**
    - Replace `YOUR_SPREADSHEET_ID` with your Google Spreadsheet ID.
@@ -24,7 +24,7 @@ The primary use case for this script is for individuals or organizations that ne
    - Replace `email@accountant.com` with your accountant's email address.
 
 4. **Run the Script:**
-   - Open Google Apps Script editor in your Google account.
+   - Open Google Apps Script editor by navigating to [Google Apps Script](https://script.google.com).
    - Create a new script and copy-paste the provided code.
    - Save and run the script.
 
@@ -46,7 +46,7 @@ var max_emails = 10; // Maximum number of emails to process per execution
 
 ## Script Functions
 
-### `process_emails_for_accountant()`
+### `main()`
 
 This is the main function that processes emails intended for the accountant, extracts relevant information, saves attachments to Google Drive, and logs the details in a Google Spreadsheet.
 
@@ -63,12 +63,38 @@ This function saves email attachments to Google Drive, organizing them by type a
 - The script processes a maximum of 10 emails per execution. This limit can be adjusted by changing the `max_emails` variable.
 - The script only processes emails sent to the specified accountant's email address within the last 7 days.
 - The script requires a specific format for the email subject to categorize the attachments. The format should include the document type in square brackets (e.g., `[Invoice]`).
+- This code only works for emails sent from a Gmail account, regardless of the receiver's email domain or email client.
 
 ## Warnings
 
 - Ensure that the Google Spreadsheet and Google Drive folder IDs are correct to avoid errors.
 - The script requires access to your Gmail, Google Drive, and Google Sheets. Make sure to review the permissions and security implications before running the script.
 - Handle sensitive information such as email addresses and document contents with care. Ensure that the script and its outputs are stored securely.
+- Be aware of Google Apps Script limitations such as execution timeouts and Gmail limitations like the number of reads and the number of concurrent mail processing (currently set to 10).
+
+## Testing and Implementation
+
+### Testing
+
+1. **Create Test Emails:**
+   - Send test emails to the specified accountant email address with subjects in the format `[DocumentType] Your Subject Here`.
+   - Attach some files to these test emails.
+
+2. **Run the Script:**
+   - Open the Google Apps Script editor where you have saved the script.
+   - Run the `main` function.
+   - Check the Google Spreadsheet for logged details and Google Drive for saved attachments.
+
+### Implementation
+
+1. **Automate Script Execution:**
+   - Open the Google Apps Script editor.
+   - Click on the clock icon to open the triggers page.
+   - Set up a trigger to run the `main` function at your preferred intervals (e.g., daily).
+
+2. **Monitor and Maintain:**
+   - Regularly check the Google Spreadsheet and Google Drive for any anomalies or errors.
+   - Adjust the script configuration as needed based on your requirements.
 
 ## Example
 
