@@ -12,7 +12,7 @@ function main() {
   var sheet = SpreadsheetApp.openById(sheet_id).getActiveSheet();
 
   // Define column titles
-  var column_titles = ["Date", "Email UID", "Sender", "Recipient", "Subject", "Drive Folder"];
+  var column_titles = ["Date", "Type", "Email UID", "Sender", "Recipient", "Subject", "Drive Folder"];
 
   // Check if the spreadsheet has headers, if not, add them
   if (sheet.getLastRow() === 0) {
@@ -36,7 +36,7 @@ function main() {
           process_message(message, sheet, base_folder_id);
         } catch (error) {
           // Log errors in the spreadsheet
-          sheet.appendRow([new Date(), "ERROR", "Failed to process an email", error.message]);
+          sheet.appendRow([new Date(), "ERROR", "", "Failed to process an email", error.message]);
         }
       });
       
@@ -45,7 +45,7 @@ function main() {
     });
   } catch (error) {
     // Log errors in the spreadsheet
-    sheet.appendRow([new Date(), "ERROR", "Failed to search emails", error.message]);
+    sheet.appendRow([new Date(), "ERROR", "", "Failed to search emails", error.message]);
   }
 }
 
@@ -65,7 +65,7 @@ function process_message(message, sheet, base_folder_id) {
   
   // Extract the document type from the subject and convert to uppercase
   var type_match = subject.match(/\[(.*?)\]/);
-  var type = type_match ? type_match[1].toUpperCase() : "NO_CATEGORY";
+  var type = type_match ? type_match[1].toUpperCase() : "NO CATEGORY";
   
   var folder_url = "No files";
   
@@ -75,7 +75,7 @@ function process_message(message, sheet, base_folder_id) {
   }
   
   // Log the email details in the spreadsheet
-  sheet.appendRow([date, email_uid, sender, recipient, subject, folder_url]);
+  sheet.appendRow([date, type, email_uid, sender, recipient, subject, folder_url]);
 }
 
 /**

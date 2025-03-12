@@ -83,7 +83,7 @@ This function saves email attachments to Google Drive, organizing them by type a
 - Handle sensitive information such as email addresses and document contents with care. Ensure that the script and its outputs are stored securely.
 - Be aware of Google Apps Script limitations such as execution timeouts and Gmail limitations like the number of reads and the number of concurrent mail processing (currently set to 10).
 - The ID of the Drive folder and the Spreadsheet ID are not the names of them; they are unique identifiers found in the URLs.
-- The columns declared in `["Date", "Email UID", "Sender", "Recipient", "Subject", "Drive Folder"]` must match the spreadsheet titles, starting from cells A1, B1, and so on.
+- The columns declared in `["Date", "Type", "Email UID", "Sender", "Recipient", "Subject", "Drive Folder"]` must match the spreadsheet titles, starting from cells A1, B1, and so on.
 
 ## Testing and Implementation
 
